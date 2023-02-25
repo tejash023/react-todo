@@ -1,0 +1,30 @@
+.container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.todoinput {
+  display: flex;
+  gap: 1rem;
+  width: 50%;
+}
+
+.todoinput input {
+  padding: 8px 6px;
+  width: 100%;
+  outline: none;
+  border: 1.5px solid orangered;
+  border-radius: 5px;
+  font-size: 1.25rem;
+}
+
+.todoinput button {
+  border: none;
+  color: white;
+  background: orangered;
+  padding: 9px 16px;
+  border-radius: 5px;
+}
