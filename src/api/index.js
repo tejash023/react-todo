@@ -10,7 +10,7 @@
 const URL = "https://jsonplaceholder.typicode.com/todos";
 
 // fetching all the todo's
-export const fetchTodo = async function () {
+export const fetchTodo = async () => {
   let data = [];
   try {
     const response = await fetch(URL + "?userId=1");
@@ -28,7 +28,6 @@ export const fetchTodo = async function () {
 };
 
 //adding the data in the todo's
-
 export const addTodo = async (title, userID) => {
   try {
     const response = await fetch(URL, {
@@ -47,6 +46,47 @@ export const addTodo = async (title, userID) => {
     return {
       success: true,
       data,
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: err.message,
+    };
+  }
+};
+
+//updating todos
+export const updateTodo = async (task) => {
+  try {
+    const response = await fetch(url + `/${task - id}`, {
+      method: "PATCH",
+      body: JSON.stringify(task),
+      headers: {
+        "Content-type": "application/json; charset=utf-8",
+      },
+    });
+
+    const data = await response.json();
+    return {
+      success: true,
+      data,
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: err.message,
+    };
+  }
+};
+
+//delete todo
+const deleteTodo = async (id) => {
+  try {
+    const response = await fetch(url + `/${id}`, {
+      method: "DELETE",
+    });
+    return {
+      success: true,
     };
   } catch (err) {
     return {
