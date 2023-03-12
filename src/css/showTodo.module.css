@@ -41,8 +41,9 @@
 
 @media only screen and (max-width: 600px) {
   .taskBox {
+    padding: 5px 8px;
     width: 100%;
-    padding: 5px 8pz;
+    margin: auto 1%;
   }
   .task h2 {
     font-size: 1.15rem;
