@@ -1,30 +1,17 @@
 .container {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 80vw;
+  height: 90vh;
+  margin: auto;
+  margin-top: 20px;
+  background-color: aliceblue;
+  box-shadow: 10px 10px 7px rgb(138, 126, 126);
 }
 
-.todoinput {
-  display: flex;
-  gap: 1rem;
-  width: 50%;
-}
-
-.todoinput input {
-  padding: 8px 6px;
-  width: 100%;
-  outline: none;
-  border: 1.5px solid orangered;
-  border-radius: 5px;
-  font-size: 1.25rem;
-}
-
-.todoinput button {
-  border: none;
-  color: white;
-  background: orangered;
-  padding: 9px 16px;
-  border-radius: 5px;
+.container h1 {
+  text-align: center;
+  color: rgba(92, 85, 85, 0.719);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2.8rem;
+  font-weight: 600;
+  text-shadow: 5px 5px lightgray;
 }

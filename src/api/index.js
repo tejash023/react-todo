@@ -58,7 +58,7 @@ export const addTodo = async (title, userID) => {
 //updating todos
 export const updateTodo = async (task) => {
   try {
-    const response = await fetch(url + `/${task - id}`, {
+    const response = await fetch(URL + `/${task.id}`, {
       method: "PATCH",
       body: JSON.stringify(task),
       headers: {
@@ -80,9 +80,9 @@ export const updateTodo = async (task) => {
 };
 
 //delete todo
-const deleteTodo = async (id) => {
+export const deleteTodo = async (id) => {
   try {
-    const response = await fetch(url + `/${id}`, {
+    const response = await fetch(URL + `/${id}`, {
       method: "DELETE",
     });
     return {

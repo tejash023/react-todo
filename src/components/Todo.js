@@ -1,15 +1,17 @@
-import styles from "../css/todo.module.css";
-
 import { fetchTodo, addTodo, deleteTodo, updateTodo } from "../api";
-import TodoList from "./TodoList";
 import { useEffect, useState } from "react";
+
+import Styles from "../css/todo.module.css";
+
+import AddTodo from "./AddTodo";
+import ShowTodo from "./ShowTodo";
 
 function Todo() {
   // State variales - Loading State, TODO state and Editing State
 
   const [loading, setLoading] = useState(true);
   const [todo, setTodo] = useState([]);
-  const [editingMode, setEditingMode] = useState({
+  const [isEdit, setisEdit] = useState({
     edit: false,
     task: {},
   });
@@ -40,16 +42,16 @@ function Todo() {
   //handle TODO update
   const handleTodoUpdate = async (task, requested) => {
     if (requested) {
-      setEditingMode({
+      setisEdit({
         edit: true,
         task,
       });
 
       return;
     }
-    const data = await updateTodo(title);
+    const data = await updateTodo(task);
 
-    setEditingMode({
+    setisEdit({
       edit: false,
       task: {},
     });
@@ -76,15 +78,28 @@ function Todo() {
       if (data.success) {
         setTodo(data.data);
       }
+
+      console.log(data);
     };
     fetchTodos();
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={Styles.container}>
       <h3>Todo List</h3>
+      {/* {Adding task} */}
+      <AddTodo
+        addtask={handleAddTodo}
+        isEdit={isEdit}
+        updateHandler={handleTodoUpdate}
+      />
 
-      <TodoList />
+      <ShowTodo
+        todo={todo}
+        delete={handleTodoDelete}
+        completed={handleTodoCompletion}
+        updateHandler={handleTodoUpdate}
+      />
     </div>
   );
 }
