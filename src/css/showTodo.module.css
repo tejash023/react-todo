@@ -4,8 +4,10 @@
   max-height: 50%;
   padding: 5px;
   background-color: aqua;
-  box-shadow: 6px 6px 4px rgb(124, 155, 155) inset;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
   overflow-y: scroll;
+  border-radius: 5px;
+  background-color: #ab57b4;
 }
 
 .task {
@@ -13,14 +15,21 @@
   margin: auto;
   margin-bottom: 7px;
   margin-top: 7px;
-  padding: 7px 10px;
+  padding: 0px 15px;
   display: flex;
   justify-content: space-between;
-  border-radius: 20px;
+  border-radius: 5px;
   align-items: center;
-  background-color: beige;
+  background-color: #000000ad;
   flex-wrap: wrap;
-  box-shadow: 6px 6px 4px rgb(124, 155, 155);
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  color: white;
+}
+
+.task h2 {
+  font-size: 1.25rem;
+  font-weight: 300;
+  width: 50%;
 }
 
 .task .icons {

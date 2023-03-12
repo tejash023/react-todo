@@ -31,8 +31,9 @@ function Todo() {
   };
 
   //handle TODO addition
-  const handleAddTodo = async (title) => {
+  const handleTodoAdd = async (title) => {
     const data = await addTodo(title, userID);
+    console.log("data in handle todo", data);
 
     if (data.success) {
       setTodo([data.data, ...todo]);
@@ -59,7 +60,7 @@ function Todo() {
 
   //handle TODO delete
   const handleTodoDelete = async (id) => {
-    const result = deleteTodo(id);
+    const result = await deleteTodo(id);
 
     if (result.success) {
       const newTodo = todo.filter((data) => {
@@ -78,28 +79,31 @@ function Todo() {
       if (data.success) {
         setTodo(data.data);
       }
-
-      console.log(data);
     };
     fetchTodos();
+    setLoading(false);
   }, []);
 
   return (
     <div className={Styles.container}>
-      <h3>Todo List</h3>
+      <h3>TODO LIST</h3>
       {/* {Adding task} */}
       <AddTodo
-        addtask={handleAddTodo}
+        handleTodoAdd={handleTodoAdd}
         isEdit={isEdit}
-        updateHandler={handleTodoUpdate}
+        handleTodoUpdate={handleTodoUpdate}
       />
 
-      <ShowTodo
-        todo={todo}
-        delete={handleTodoDelete}
-        completed={handleTodoCompletion}
-        updateHandler={handleTodoUpdate}
-      />
+      {todo.length <= 0 ? (
+        <p>Add todos and it will be refeclted here</p>
+      ) : (
+        <ShowTodo
+          todo={todo}
+          handleTodoDelete={handleTodoDelete}
+          handleTodoCompletion={handleTodoCompletion}
+          handleTodoUpdate={handleTodoUpdate}
+        />
+      )}
     </div>
   );
 }

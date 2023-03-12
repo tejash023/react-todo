@@ -1,10 +1,15 @@
 .container {
-  width: 80vw;
-  height: 90vh;
-  margin: auto;
-  margin-top: 20px;
-  background-color: aliceblue;
-  box-shadow: 10px 10px 7px rgb(138, 126, 126);
+  height: auto;
+  margin: auto 5%;
+  /* margin-top: 20px; */
+  /* background-color: aliceblue; */
+  border-radius: 5px;
+  /* box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
 }
 
 .container h1 {
