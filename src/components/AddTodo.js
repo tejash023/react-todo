@@ -47,7 +47,7 @@ const AddTodo = (props) => {
             Save
           </button>
         ) : (
-          <button type="submit">ADD TODO</button>
+          <button type="submit">ADD TODO </button>
         )}
       </form>
     </div>

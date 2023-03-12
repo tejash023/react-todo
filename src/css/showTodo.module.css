@@ -38,3 +38,16 @@
   cursor: pointer;
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .task h2 {
+    font-size: 1.15rem;
+
+    width: 70%;
+  }
+  .task .icons {
+    gap: 1rem;
+
+    font-size: 1rem;
+  }
+}

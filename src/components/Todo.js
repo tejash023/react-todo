@@ -1,5 +1,6 @@
 import { fetchTodo, addTodo, deleteTodo, updateTodo } from "../api";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import Styles from "../css/todo.module.css";
 
@@ -9,7 +10,6 @@ import ShowTodo from "./ShowTodo";
 function Todo() {
   // State variales - Loading State, TODO state and Editing State
 
-  const [loading, setLoading] = useState(true);
   const [todo, setTodo] = useState([]);
   const [isEdit, setisEdit] = useState({
     edit: false,
@@ -23,7 +23,7 @@ function Todo() {
     const index = todo.findIndex((elem) => {
       return elem.id === task.id;
     });
-
+    toast.success("Awesome!! Job done 👏");
     setTodo((prev) => {
       prev[index].completed = true;
       return [...prev];
@@ -33,11 +33,11 @@ function Todo() {
   //handle TODO addition
   const handleTodoAdd = async (title) => {
     const data = await addTodo(title, userID);
-    console.log("data in handle todo", data);
 
     if (data.success) {
       setTodo([data.data, ...todo]);
     }
+    toast.success("Woho! Todo added 🚀");
   };
 
   //handle TODO update
@@ -51,7 +51,7 @@ function Todo() {
       return;
     }
     const data = await updateTodo(task);
-
+    toast.success("Todo updated!! 👍");
     setisEdit({
       edit: false,
       task: {},
@@ -69,6 +69,10 @@ function Todo() {
 
       setTodo(newTodo);
     }
+
+    toast.success("Todo removed!!", {
+      icon: "❎",
+    });
   };
 
   //fetching all TODO's - USE EFFECT HOOK
@@ -80,8 +84,12 @@ function Todo() {
         setTodo(data.data);
       }
     };
-    fetchTodos();
-    setLoading(false);
+    const loader = fetchTodos();
+    toast.promise(loader, {
+      loading: "Loading",
+      success: "Todo loaded",
+      error: "Error when fetching",
+    });
   }, []);
 
   return (
@@ -104,6 +112,18 @@ function Todo() {
           handleTodoUpdate={handleTodoUpdate}
         />
       )}
+      <Toaster
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 2000,
+          style: {
+            borderRadius: "5px",
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+      />
     </div>
   );
 }
